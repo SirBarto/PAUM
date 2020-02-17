@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class SecondActivity extends AppCompatActivity implements View.OnClickListener {
+public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
 
     MediaPlayer player;
     TimeCounter timeCounter = new TimeCounter();
@@ -218,9 +218,8 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
             case R.id.button7:
-                startActivity(new Intent(SecondActivity.this, MainActivity.class));
+                startActivity(new Intent(LearningActivity.this, MainActivity.class));
                 break;
-
         }
 
         tempCode2 = tempCode[0] + tempCode[1] + tempCode[2] + tempCode[3] + tempCode[4] + tempCode[5];
@@ -228,7 +227,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
 
         if (textView.isPressed())
             compare(tempCode2);
-
     }
 
     private void defaultButton() {
@@ -270,7 +268,6 @@ public class SecondActivity extends AppCompatActivity implements View.OnClickLis
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     void compare(String tempCode) {

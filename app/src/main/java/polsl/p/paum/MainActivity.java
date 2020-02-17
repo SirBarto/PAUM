@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonLearning:
-                startActivity(new Intent(this, SecondActivity.class));
+                startActivity(new Intent(this, LearningActivity.class));
                 finish();
                 break;
             case R.id.buttonTestM:
@@ -73,5 +73,5 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
         }
     }
-
+    
 }
