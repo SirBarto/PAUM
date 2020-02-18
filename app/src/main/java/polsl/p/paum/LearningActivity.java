@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,11 +42,24 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
 
     private Button b1, b2, b3, b4, b5, b6, b7;
 
+    Button[] buttons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        buttons = new Button[6];
+
+        for(int i=0;i<buttons.length;i++)
+        {
+            String buttonID = "button"+(i+1);
+
+            int resID = getResources().getIdentifier(buttonID,"id",getPackageName());
+            buttons[i] = ((Button) findViewById(resID));
+            buttons[i].setOnClickListener(this);
+        }
+        /*
         b1 = findViewById(R.id.button1);
         b2 = findViewById(R.id.button2);
         b3 = findViewById(R.id.button3);
@@ -53,11 +67,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         b4 = findViewById(R.id.button4);
         b5 = findViewById(R.id.button5);
         b6 = findViewById(R.id.button6);
-
+        */
         b7 = findViewById(R.id.button7);
 
         textView = findViewById(R.id.textView3);
-
+        /*
         b1.setOnClickListener(this);
         b2.setOnClickListener(this);
         b3.setOnClickListener(this);
@@ -65,7 +79,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         b4.setOnClickListener(this);
         b5.setOnClickListener(this);
         b6.setOnClickListener(this);
-
+        */
         b7.setOnClickListener(this);
 
         textView.setOnClickListener(this);
@@ -121,6 +135,35 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
+        int index=0;
+        for(int i=0;i<buttons.length;i++)
+        {
+            if(buttons[i].getId()==v.getId())
+            {
+                index=i;
+                buttons[i].setEnabled(true);
+                if (buttons[i].isPressed()) {
+                    buttons[i].setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
+                    tempCode[i] = Integer.toString(1);
+                    buttons[i].setClickable(false);
+                    break;
+                } else if (!buttons[i].isPressed()) {
+                    buttons[i].setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
+                    tempCode[i] = Integer.toString(0);
+                    break;
+                }
+            }
+            tempCode2 = tempCode[i] + tempCode[1] + tempCode[2] + tempCode[3] + tempCode[4] + tempCode[5];
+            Log.v("tempCode2: ", tempCode2);
+        }
+
+        if (textView.isPressed())
+            compare(tempCode2);
+
+        Toast.makeText(this,"Button clicked index: "+index,Toast.LENGTH_SHORT).show();
+
+
+/*
         switch (v.getId()) {
             case R.id.button1:
                 b1.setEnabled(true);
@@ -210,6 +253,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
 
         if (textView.isPressed())
             compare(tempCode2);
+        */
     }
 
     private void defaultButton() {
