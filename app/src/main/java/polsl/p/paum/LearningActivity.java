@@ -12,9 +12,8 @@ import android.widget.TextView;
 public class LearningActivity extends AppCompatActivity implements View.OnClickListener {
 
     MediaPlayer player;
-    TimeCounter timeCounter = new TimeCounter();
 
-    int[] songsList = {R.raw.a, R.raw.b, R.raw.c, R.raw.d, R.raw.e, R.raw.f, R.raw.g, R.raw.h, R.raw.i,
+    int[] sampleOfCharsList = {R.raw.a, R.raw.b, R.raw.c, R.raw.d, R.raw.e, R.raw.f, R.raw.g, R.raw.h, R.raw.i,
             R.raw.j, R.raw.k, R.raw.l, R.raw.m, R.raw.n, R.raw.o, R.raw.p, R.raw.q, R.raw.r, R.raw.s,
             R.raw.t, R.raw.u, R.raw.v, R.raw.w, R.raw.x, R.raw.y, R.raw.z};
 
@@ -39,8 +38,8 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
     };
 
     TextView textView;
+
     private Button b1, b2, b3, b4, b5, b6, b7;
-    int btn1 = 0, btn2 = 0, btn3 = 0, btn4 = 0, btn5 = 0, btn6 = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +75,6 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    //right button 3s w menu
-    void testMode(String tempCode) {
-    }
-
     void displaySymbol(int tempAlphabet) {
         Log.v("int  tempalphabet", String.valueOf(tempAlphabet));
         Log.v("test alphabet", alphabet[tempAlphabet]);
@@ -88,7 +83,7 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
 
     public void play(int indexSong) {
         if (player == null) {
-            player = MediaPlayer.create(this, songsList[indexSong]);
+            player = MediaPlayer.create(this, sampleOfCharsList[indexSong]);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -131,13 +126,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 b1.setEnabled(true);
                 if (b1.isPressed()) {
                     b1.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn1 = 1;
                     tempCode[0] = Integer.toString(1);
                     b1.setClickable(false);
                     break;
                 } else if (!b1.isPressed()) {
                     b1.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn1 = 0;
                     tempCode[0] = Integer.toString(0);
                     break;
                 }
@@ -146,13 +139,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 b2.setEnabled(true);
                 if (b2.isPressed()) {
                     b2.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn2 = 1;
                     tempCode[1] = Integer.toString(1);
                     b2.setClickable(false);
                     break;
                 } else if (!b2.isPressed()) {
                     b2.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn2 = 0;
                     tempCode[1] = Integer.toString(0);
                     break;
                 }
@@ -161,13 +152,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 b3.setEnabled(true);
                 if (b3.isPressed()) {
                     b3.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn3 = 1;
                     tempCode[2] = Integer.toString(1);
                     b3.setClickable(false);
                     break;
                 } else if (!b3.isPressed()) {
                     b3.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn3 = 0;
                     tempCode[2] = Integer.toString(0);
                     break;
                 }
@@ -176,13 +165,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 b4.setEnabled(true);
                 if (b4.isPressed()) {
                     b4.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn4 = 1;
                     tempCode[3] = Integer.toString(1);
                     b4.setClickable(false);
                     break;
                 } else if (!b4.isPressed()) {
                     b4.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn4 = 0;
                     tempCode[3] = Integer.toString(0);
                     break;
                 }
@@ -191,13 +178,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 b5.setEnabled(true);
                 if (b5.isPressed()) {
                     b5.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn5 = 1;
                     tempCode[4] = Integer.toString(1);
                     b5.setClickable(false);
                     break;
                 } else if (!b5.isPressed()) {
                     b5.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn5 = 0;
                     tempCode[4] = Integer.toString(0);
                     break;
                 }
@@ -206,13 +191,11 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
                 b6.setEnabled(true);
                 if (b6.isPressed()) {
                     b6.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn6 = 1;
                     tempCode[5] = Integer.toString(1);
                     b6.setClickable(false);
                     break;
                 } else if (!b6.isPressed()) {
                     b6.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn6 = 0;
                     tempCode[5] = Integer.toString(0);
                     break;
                 }
@@ -230,8 +213,6 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void defaultButton() {
-        try {
-            Thread.sleep(3000);
             for (int i = 0; i < tempCode.length; i++) {
                 tempCode[i] = "0";
             }
@@ -265,9 +246,6 @@ public class LearningActivity extends AppCompatActivity implements View.OnClickL
             b6.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
             b6.setClickable(true);
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     void compare(String tempCode) {

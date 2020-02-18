@@ -14,7 +14,6 @@ import java.util.Random;
 public class TestActivity extends AppCompatActivity implements View.OnClickListener {
 
     MediaPlayer player;
-    TimeCounter timeCounter = new TimeCounter();
 
     int[] songsList = {R.raw.a, R.raw.b, R.raw.c, R.raw.d, R.raw.e, R.raw.f, R.raw.g, R.raw.h, R.raw.i,
             R.raw.j, R.raw.k, R.raw.l, R.raw.m, R.raw.n, R.raw.o, R.raw.p, R.raw.q, R.raw.r, R.raw.s,
@@ -46,7 +45,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     @SuppressWarnings("FieldCanBeLocal")
     private Button b11, b22, b33, b44, b55, b66, b77, b88;
-    int btn1 = 0, btn2 = 0, btn3 = 0, btn4 = 0, btn5 = 0, btn6 = 0;
     int rand = 0;
 
     @Override
@@ -150,13 +148,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 b11.setEnabled(true);
                 if (b11.isPressed()) {
                     b11.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn1 = 1;
                     tempCode[0] = Integer.toString(1);
                     b11.setClickable(false);
                     break;
                 } else if (!b11.isPressed()) {
                     b11.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn1 = 0;
                     tempCode[0] = Integer.toString(0);
                     break;
                 }
@@ -165,13 +161,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 b22.setEnabled(true);
                 if (b22.isPressed()) {
                     b22.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn2 = 1;
                     tempCode[1] = Integer.toString(1);
                     b22.setClickable(false);
                     break;
                 } else if (!b22.isPressed()) {
                     b22.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn2 = 0;
                     tempCode[1] = Integer.toString(0);
                     break;
                 }
@@ -180,13 +174,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 b33.setEnabled(true);
                 if (b33.isPressed()) {
                     b33.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn3 = 1;
                     tempCode[2] = Integer.toString(1);
                     b33.setClickable(false);
                     break;
                 } else if (!b33.isPressed()) {
                     b33.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn3 = 0;
                     tempCode[2] = Integer.toString(0);
                     break;
                 }
@@ -195,13 +187,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 b44.setEnabled(true);
                 if (b44.isPressed()) {
                     b44.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn4 = 1;
                     tempCode[3] = Integer.toString(1);
                     b44.setClickable(false);
                     break;
                 } else if (!b44.isPressed()) {
                     b44.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn4 = 0;
                     tempCode[3] = Integer.toString(0);
                     break;
                 }
@@ -210,13 +200,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 b55.setEnabled(true);
                 if (b55.isPressed()) {
                     b55.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn5 = 1;
                     tempCode[4] = Integer.toString(1);
                     b55.setClickable(false);
                     break;
                 } else if (!b55.isPressed()) {
                     b55.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn5 = 0;
                     tempCode[4] = Integer.toString(0);
                     break;
                 }
@@ -225,13 +213,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 b66.setEnabled(true);
                 if (b66.isPressed()) {
                     b66.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    btn6 = 1;
                     tempCode[5] = Integer.toString(1);
                     b66.setClickable(false);
                     break;
                 } else if (!b66.isPressed()) {
                     b66.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    btn6 = 0;
                     tempCode[5] = Integer.toString(0);
                     break;
                 }
@@ -240,7 +226,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(TestActivity.this, MainActivity.class));
                 break;
             case R.id.button88:
-                //learningModeStart();
                 rand = learningModeStart();
                 break;
         }
@@ -262,11 +247,10 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void defaultButton() {
-        try {
-            Thread.sleep(3000);
             for (int i = 0; i < tempCode.length; i++) {
                 tempCode[i] = "0";
             }
+            
             b11.setPressed(false);
             b11.clearFocus();
             b11.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
@@ -299,9 +283,6 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
             textView.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
 
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     void compare(String tempCode, int randNumberCompare) {
