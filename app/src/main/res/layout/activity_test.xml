@@ -7,7 +7,7 @@
     tools:context=".TestActivity">
 
     <Button
-        android:id="@+id/button77"
+        android:id="@+id/menubutton2"
         android:layout_width="123dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
@@ -136,7 +136,7 @@
         app:layout_constraintVertical_bias="0.442" />
 
     <Button
-        android:id="@+id/button88"
+        android:id="@+id/startTestbutton"
         android:layout_width="123dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"

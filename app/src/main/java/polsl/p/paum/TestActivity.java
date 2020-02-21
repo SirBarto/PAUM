@@ -15,14 +15,19 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     MediaPlayer player;
 
+    TextView CompareDisplaytextView2;
+    Button[] buttons;
+    Button menubutton, startTest;
+
+    int rand = 0;
+
     int[] songsList = {R.raw.a, R.raw.b, R.raw.c, R.raw.d, R.raw.e, R.raw.f, R.raw.g, R.raw.h, R.raw.i,
             R.raw.j, R.raw.k, R.raw.l, R.raw.m, R.raw.n, R.raw.o, R.raw.p, R.raw.q, R.raw.r, R.raw.s,
             R.raw.t, R.raw.u, R.raw.v, R.raw.w, R.raw.x, R.raw.y, R.raw.z};
 
-    int[] komunikat = {R.raw.chosen, R.raw.negative, R.raw.positive};
+    int[] communicate = {R.raw.chosen, R.raw.negative, R.raw.positive};
 
     String[] tempCode = new String[6];
-
     String tempCode2 = "000000";
 
     String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H",
@@ -41,41 +46,28 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                     "W", "X", "Y", "Z"}
     };
 
-    TextView textView;
-
-    @SuppressWarnings("FieldCanBeLocal")
-    private Button b11, b22, b33, b44, b55, b66, b77, b88;
-    int rand = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        b11 = findViewById(R.id.button11);
-        b22 = findViewById(R.id.button22);
-        b33 = findViewById(R.id.button33);
+        buttons = new Button[6];
 
-        b44 = findViewById(R.id.button44);
-        b55 = findViewById(R.id.button55);
-        b66 = findViewById(R.id.button66);
+        for (int i = 0; i < buttons.length; i++) {
+            String buttonID = "button" + (i + 1);
 
-        b77 = findViewById(R.id.button77);
-        b88 = findViewById(R.id.button88);
-        textView = findViewById(R.id.textView33);
+            int resID = getResources().getIdentifier(buttonID, "id", getPackageName());
+            buttons[i] = ((Button) findViewById(resID));
+            buttons[i].setOnClickListener(this);
+        }
 
-        b11.setOnClickListener(this);
-        b22.setOnClickListener(this);
-        b33.setOnClickListener(this);
+        menubutton = findViewById(R.id.menubutton2);
+        menubutton.setOnClickListener(this);
+        startTest = findViewById(R.id.startTestbutton);
+        startTest.setOnClickListener(this);
 
-        b44.setOnClickListener(this);
-        b55.setOnClickListener(this);
-        b66.setOnClickListener(this);
-
-        b77.setOnClickListener(this);
-        b88.setOnClickListener(this);
-
-        textView.setOnClickListener(this);
+        CompareDisplaytextView2 = findViewById(R.id.textView33);
+        CompareDisplaytextView2.setOnClickListener(this);
 
         for (int i = 0; i < tempCode.length; i++) {
             tempCode[i] = "0";
@@ -86,7 +78,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
     void displaySymbol(int tempAlphabet) {
         Log.v("int  tempalphabet", String.valueOf(tempAlphabet));
         Log.v("test alphabet", alphabet[tempAlphabet]);
-        textView.setText(alphabet[tempAlphabet]);
+        CompareDisplaytextView2.setText(alphabet[tempAlphabet]);
     }
 
     public void play(int indexSong) {
@@ -105,7 +97,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     public void play2(int indexSong) {
         if (player == null) {
-            player = MediaPlayer.create(this, komunikat[indexSong]);
+            player = MediaPlayer.create(this, communicate[indexSong]);
             player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
@@ -143,97 +135,41 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
+
         switch (v.getId()) {
-            case R.id.button11:
-                b11.setEnabled(true);
-                if (b11.isPressed()) {
-                    b11.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    tempCode[0] = Integer.toString(1);
-                    b11.setClickable(false);
-                    break;
-                } else if (!b11.isPressed()) {
-                    b11.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    tempCode[0] = Integer.toString(0);
-                    break;
-                }
-                break;
-            case R.id.button22:
-                b22.setEnabled(true);
-                if (b22.isPressed()) {
-                    b22.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    tempCode[1] = Integer.toString(1);
-                    b22.setClickable(false);
-                    break;
-                } else if (!b22.isPressed()) {
-                    b22.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    tempCode[1] = Integer.toString(0);
-                    break;
-                }
-                break;
-            case R.id.button33:
-                b33.setEnabled(true);
-                if (b33.isPressed()) {
-                    b33.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    tempCode[2] = Integer.toString(1);
-                    b33.setClickable(false);
-                    break;
-                } else if (!b33.isPressed()) {
-                    b33.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    tempCode[2] = Integer.toString(0);
-                    break;
-                }
-                break;
-            case R.id.button44:
-                b44.setEnabled(true);
-                if (b44.isPressed()) {
-                    b44.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    tempCode[3] = Integer.toString(1);
-                    b44.setClickable(false);
-                    break;
-                } else if (!b44.isPressed()) {
-                    b44.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    tempCode[3] = Integer.toString(0);
-                    break;
-                }
-                break;
-            case R.id.button55:
-                b55.setEnabled(true);
-                if (b55.isPressed()) {
-                    b55.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    tempCode[4] = Integer.toString(1);
-                    b55.setClickable(false);
-                    break;
-                } else if (!b55.isPressed()) {
-                    b55.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    tempCode[4] = Integer.toString(0);
-                    break;
-                }
-                break;
-            case R.id.button66:
-                b66.setEnabled(true);
-                if (b66.isPressed()) {
-                    b66.setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
-                    tempCode[5] = Integer.toString(1);
-                    b66.setClickable(false);
-                    break;
-                } else if (!b66.isPressed()) {
-                    b66.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-                    tempCode[5] = Integer.toString(0);
-                    break;
-                }
-                break;
-            case R.id.button77:
+            case R.id.menubutton2:
                 startActivity(new Intent(TestActivity.this, MainActivity.class));
                 break;
-            case R.id.button88:
+            case R.id.startTestbutton:
                 rand = learningModeStart();
                 break;
+        }
+
+        for (int i = 0; i < buttons.length; i++) {
+            if (buttons[i].getId() == v.getId()) {
+                buttons[i].setEnabled(true);
+                if (buttons[i].isPressed()) {
+                    buttons[i].setBackgroundColor(getResources().getColor(R.color.colorButtonPressed));
+                    tempCode[i] = Integer.toString(1);
+                    buttons[i].setClickable(false);
+                    break;
+                } else if (!buttons[i].isPressed()) {
+                    buttons[i].setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
+                    tempCode[i] = Integer.toString(0);
+                    break;
+                }
+
+                for (int a = 0; a <= tempCode.length; a++)
+                    if (a == i) {
+                        tempCode[a] = tempCode[i];
+                    }
+            }
         }
 
         tempCode2 = tempCode[0] + tempCode[1] + tempCode[2] + tempCode[3] + tempCode[4] + tempCode[5];
         Log.v("tempCode2: ", tempCode2);
 
-        if (textView.isPressed())
+        if (CompareDisplaytextView2.isPressed())
             compare(tempCode2, rand);
     }
 
@@ -250,38 +186,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             for (int i = 0; i < tempCode.length; i++) {
                 tempCode[i] = "0";
             }
-            
-            b11.setPressed(false);
-            b11.clearFocus();
-            b11.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-            b11.setClickable(true);
 
-            b22.setPressed(false);
-            b22.clearFocus();
-            b22.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-            b22.setClickable(true);
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setPressed(false);
+            buttons[i].clearFocus();
+            buttons[i].setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
+            buttons[i].setClickable(true);
+        }
 
-            b33.setPressed(false);
-            b33.clearFocus();
-            b33.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-            b33.setClickable(true);
-
-            b44.setPressed(false);
-            b44.clearFocus();
-            b44.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-            b44.setClickable(true);
-
-            b55.setPressed(false);
-            b55.clearFocus();
-            b55.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-            b55.setClickable(true);
-
-            b66.setPressed(false);
-            b66.clearFocus();
-            b66.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
-            b66.setClickable(true);
-
-            textView.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
+        CompareDisplaytextView2.setBackgroundColor(getResources().getColor(R.color.colorButtonFocused));
 
     }
 
@@ -294,11 +207,11 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 if (BrailleAndAlphabet[i][j].equals(tempCode)) {
                     if (j == randNumberCompare) {
                         play2(2);
-                        textView.setBackgroundColor(getResources().getColor(R.color.colorGood));
+                        CompareDisplaytextView2.setBackgroundColor(getResources().getColor(R.color.colorGood));
                     }
                 } else {
                     play2(1);
-                    textView.setBackgroundColor(getResources().getColor(R.color.colorBad));
+                    CompareDisplaytextView2.setBackgroundColor(getResources().getColor(R.color.colorBad));
                 }
             }
             defaultButton();
