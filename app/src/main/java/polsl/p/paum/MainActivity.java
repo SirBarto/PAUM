@@ -64,10 +64,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonLearning:
+                stop(v);
                 startActivity(new Intent(this, LearningActivity.class));
                 finish();
                 break;
             case R.id.buttonTestM:
+                stop(v);
                 startActivity(new Intent(this, TestActivity.class));
                 finish();
                 break;

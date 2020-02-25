@@ -58,7 +58,7 @@
     <Button
         android:id="@+id/buttonLearning"
         android:layout_width="185dp"
-        android:layout_height="334dp"
+        android:layout_height="349dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -73,8 +73,8 @@
 
     <Button
         android:id="@+id/buttonTestM"
-        android:layout_width="162dp"
-        android:layout_height="324dp"
+        android:layout_width="168dp"
+        android:layout_height="354dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -82,10 +82,10 @@
         android:text="Test/Manual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintHorizontal_bias="0.014"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.937" />
+        app:layout_constraintVertical_bias="0.887" />
 
 
 </android.support.constraint.ConstraintLayout>
