@@ -1,7 +1,6 @@
 package polsl.p.paum;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,38 +18,6 @@ public class LearningActivity extends Logic {
         Log.v("int  tempalphabet", String.valueOf(tempAlphabet));
         Log.v("test alphabet", alphabet[tempAlphabet]);
         CompareDisplaytextView.setText(alphabet[tempAlphabet]);
-    }
-
-    public void play(int indexSong) {
-        if (player == null) {
-            player = MediaPlayer.create(this, sampleOfCharsList[indexSong]);
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    stopPlayer();
-                }
-            });
-        }
-
-        player.start();
-    }
-
-    public void pause() {
-        if (player != null) {
-            player.pause();
-        }
-    }
-
-    public void stop() {
-        stopPlayer();
-    }
-
-    private void stopPlayer() {
-        if (player != null) {
-            player.release();
-            player = null;
-            //Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -101,7 +68,7 @@ public class LearningActivity extends Logic {
 
                 if (BrailleAndAlphabet[i][j].equals(tempCode)) {
                     displaySymbol(j);
-                    play(j);
+                    playSampleOfCharsList(j);//play(j);
                     break;
                 }
             }

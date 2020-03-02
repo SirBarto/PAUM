@@ -1,7 +1,6 @@
 package polsl.p.paum;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,67 +14,16 @@ public class TestActivity extends Logic {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-
         createGui();
 
         startTest = findViewById(R.id.startTestbutton);
         startTest.setOnClickListener(this);
-
-        //CompareDisplaytextView2 = findViewById(R.id.textView3);
-        //CompareDisplaytextView2.setOnClickListener(this);
-
     }
 
     void displaySymbol(int tempAlphabet) {
         Log.v("int  tempalphabet", String.valueOf(tempAlphabet));
         Log.v("test alphabet", alphabet[tempAlphabet]);
         CompareDisplaytextView.setText(alphabet[tempAlphabet]);
-    }
-
-    public void play(int indexSong) {
-        if (player == null) {
-            player = MediaPlayer.create(this, sampleOfCharsList[indexSong]);
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    stopPlayer();
-                }
-            });
-        }
-
-        player.start();
-    }
-
-    public void play2(int indexSong) {
-        if (player == null) {
-            player = MediaPlayer.create(this, communicate[indexSong]);
-            player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    stopPlayer();
-                }
-            });
-        }
-
-        player.start();
-    }
-
-    public void pause() {
-        if (player != null) {
-            player.pause();
-        }
-    }
-
-    public void stop() {
-        stopPlayer();
-    }
-
-    private void stopPlayer() {
-        if (player != null) {
-            player.release();
-            player = null;
-            //Toast.makeText(this, "MediaPlayer released", Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -128,7 +76,7 @@ public class TestActivity extends Logic {
         Random rand = new Random();
         int maxrand = alphabet.length;
         int randNumber = rand.nextInt(maxrand);
-        play(randNumber);
+        playSampleOfCharsList(randNumber);
         displaySymbol(randNumber);
         return randNumber;
     }
@@ -138,12 +86,13 @@ public class TestActivity extends Logic {
             for (int j = 0; j < BrailleAndAlphabet[i].length; j++) {
                 Log.v("compare i:", String.valueOf(i));
                 Log.v("compare j:", String.valueOf(j));
+
                 if (BrailleAndAlphabet[i][j].equals(tempCode)) {
                     if (j == randNumberCompare) {
-                        play2(2);
+                        playCommunicate(2);
                         CompareDisplaytextView.setBackgroundColor(getResources().getColor(R.color.colorGood));
                     } else {
-                        play2(1);
+                        playCommunicate(1);
                         CompareDisplaytextView.setBackgroundColor(getResources().getColor(R.color.colorBad));
                     }
                 }
